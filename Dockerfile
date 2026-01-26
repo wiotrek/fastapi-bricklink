@@ -1,12 +1,11 @@
 FROM python:3.11-slim
 
-# Bezpieczne zmienne
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Systemowe zależności (opcjonalne, ale zalecane)
+# Depedencies os
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
