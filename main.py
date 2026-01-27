@@ -56,8 +56,7 @@ def get_price(item_type: str, item_id: str):
     return bricklink_get(
         f"{BRICKLINK_BASE_URL}/items/{item_type}/{item_id}/price",
         params={
-            "new_or_used": "N",
-            "guide_type": "sold"
+            "new_or_used": "N"
         }
     )
 
@@ -68,4 +67,12 @@ def get_colors(item_type: str, item_id: str):
 
     return bricklink_get(
         f"{BRICKLINK_BASE_URL}/items/{item_type}/{item_id}/colors"
+    )
+
+
+@app.get("/color/{color_id}")
+def check_color(color_id: int):
+
+    return bricklink_get(
+        f"{BRICKLINK_BASE_URL}/colors/{color_id}"
     )

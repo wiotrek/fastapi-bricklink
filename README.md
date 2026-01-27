@@ -11,3 +11,12 @@ endpoint to http request
 ```
 http://bricklink-api.n8n.svc.cluster.local:8000
 ```
+k8s secrets
+```
+kubectl create secret generic bricklink-secrets \
+  -n n8n \
+  --from-literal=consumer_key= \
+  --from-literal=consumer_secret= \
+  --from-literal=token= \
+  --from-literal=token_secret=
+```
