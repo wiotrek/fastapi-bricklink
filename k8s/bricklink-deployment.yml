@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: bricklink-api
-          image: ghcr.io/wiotrek/fastapi-bricklink:cc94cdf3c38587fc70f6b711753d32d1d89eef4a
+          image: ghcr.io/wiotrek/fastapi-bricklink:latest
           ports:
             - containerPort: 8000
           env:

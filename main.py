@@ -72,6 +72,9 @@ def get_colors(item_type: str, item_id: str):
 
 @app.get("/color/{color_id}")
 def check_color(color_id: int):
+   
+    if color_id <= 0:
+        raise HTTPException(status_code=400, detail="Color id must be > 0")
 
     return bricklink_get(
         f"{BRICKLINK_BASE_URL}/colors/{color_id}"
