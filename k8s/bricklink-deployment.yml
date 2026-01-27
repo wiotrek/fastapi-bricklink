@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bricklink-api
+  namespace: n8n
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bricklink-api
+  template:
+    metadata:
+      labels:
+        app: bricklink-api
+    spec:
+      containers:
+        - name: bricklink-api
+          image: ghcr.io/wiotrek/fastapi-bricklink:cc94cdf3c38587fc70f6b711753d32d1d89eef4a
+          ports:
+            - containerPort: 8000
+          env:
+            - name: CONSUMER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bricklink-secrets
+                  key: consumer_key
+            - name: CONSUMER_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bricklink-secrets
+                  key: consumer_secret
+            - name: TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: bricklink-secrets
+                  key: token
+            - name: TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: bricklink-secrets
+                  key: token_secret
