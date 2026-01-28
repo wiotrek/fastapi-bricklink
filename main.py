@@ -49,14 +49,17 @@ def validate_type(item_type: str) -> str:
     return item_type
 
 
-@app.get("/price/{item_type}/{item_id}")
-def get_price(item_type: str, item_id: str):
+@app.get("/price/{item_type}/{item_id}/{color_id}")
+def get_price(item_type: str, item_id: str, color_id: int = 0):
     item_type = validate_type(item_type)
 
     return bricklink_get(
         f"{BRICKLINK_BASE_URL}/items/{item_type}/{item_id}/price",
         params={
-            "new_or_used": "N"
+            "new_or_used": "U",
+            "currency_code": "PLN",
+            "guide_type": "sold",
+            "color_id": color_id
         }
     )
 
